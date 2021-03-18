@@ -78,13 +78,13 @@ class Clientes(models.Model):
     )
     
     DNI = models.CharField(
-        max_length=15,
+        max_length=50,
         default=None,
         null=True
     )
 
     telefono = models.CharField(
-        max_length=25,
+        max_length=50,
         default=None,
         null=True
     )
@@ -108,7 +108,7 @@ class Clientes(models.Model):
     # )
 
     CP = models.CharField(
-        max_length=10,
+        max_length=50,
         default=None,
         null=True
     )
