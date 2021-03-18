@@ -10,7 +10,7 @@
 import csv
 from CRM.models import Clientes, Comerciales
 
-CSV_PATH = '/home/vlljuan/Descargas/REPORTE.csv'      # Csv file path  
+CSV_PATH = './REPORTE.csv'      # Csv file path  
 
 def fechaDecode(fecha):
     try:
