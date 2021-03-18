@@ -84,7 +84,7 @@ class Clientes(models.Model):
     )
 
     telefono = models.CharField(
-        max_length=9,
+        max_length=25,
         default=None,
         null=True
     )
@@ -108,19 +108,19 @@ class Clientes(models.Model):
     # )
 
     CP = models.CharField(
-        max_length=5,
+        max_length=10,
         default=None,
         null=True
     )
 
     provincia = models.CharField(
-        max_length=30,
+        max_length=50,
         default=None,
         null=True
     )
 
     poblacion = models.CharField(
-        max_length=30,
+        max_length=50,
         default=None,
         null=True
     )
@@ -177,27 +177,27 @@ class Clientes(models.Model):
     )
 
     origen = models.CharField(
-        max_length=25,
+        max_length=50,
         choices=ORIGEN,
         default=REFERENCIADO,
         null=True
     )
     segmento = models.CharField(
-        max_length=25,
+        max_length=50,
         choices=SEGMENTO,
         default=PARTICULAR,
         null=True
     )
 
     estado = models.CharField(
-        max_length=25,
+        max_length=50,
         choices=ESTADO,
         default=AGENDADO,
         null=True
     )
 
     operador = models.CharField(
-        max_length=25,
+        max_length=50,
         choices=OPERADOR,
         default=MASMOVIL,
         null=True
