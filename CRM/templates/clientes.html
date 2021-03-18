@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="mt-2 mb-2 container d-flex justify-content-between">
+    <h1>Lista de clientes</h1>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <form class="d-flex" method="post">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Búsqueda rápida" aria-label="Search" name="search">
+            <button class="btn btn-outline-warning" type="submit">Busca</button>
+          </form>
+        </div>
+    </nav>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nombre completo</th>
+      <th scope="col">DNI</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Población</th>
+      <th scope="col">Comercial asignado</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cliente in page_obj %}
+    <tr>
+      <td><strong>{{cliente.nombre}}</strong></td>
+      <td>{{cliente.DNI}}</td>
+      <td>{{cliente.telefono}}</td>
+      <td>{{cliente.email}}</td>
+      <td>{{cliente.direccion}}</td>
+      <td>{{cliente.poblacion}}, {{cliente.provincia}}</td>
+      <td>{{cliente.comercial.nombre}}</td>
+      <td><a href="/CRM/clientes/{{ cliente.pk }}/"><button class="btn btn-outline-warning">Detalles</button></a></td>
+      <td><a href="/CRM/editar/{{ cliente.pk }}/"><button class="btn btn-outline-warning">Editar</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p>{{text}}</p>
+
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+
+{% endblock %}

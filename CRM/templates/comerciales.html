@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="mt-2 mb-2 container d-flex justify-content-between">
+  <h1>Lista de comerciales</h1>
+  <nav class="navbar navbar-light bg-light">
+    <form class="d-flex" method="post">
+      {% csrf_token %}
+      <div>
+        <input class="form-control me-2" type="search" placeholder="Búsqueda de comercial" aria-label="Search"
+          name="search">
+        <button class="btn btn-outline-warning" type="submit">Busca</button>
+      </div>
+
+      <div>
+        <div class="container m-3">
+          <label for="start">Desde:</label>
+          <input class="fielddisform" type="date" id="desde" name="desde" min="2018-01-01" max="2022-12-31">
+          <label for="start">Hasta:</label>
+          <input class="fielddisform" type="date" id="hasta" name="hasta" min="2018-01-01" max="2022-12-31">
+        </div>
+      </div>
+    </form>
+  </nav>
+</div>
+
+<form action="./descargar" method="post" class="form-control">{% csrf_token %}
+  <input type="hidden" id="busqueda" name="busqueda" value="{{busqueda}}">
+  <input type="hidden" id="desde" name="desde" value="{{desde}}">
+  <input type="hidden" id="hasta" name="hasta" value="{{hasta}}">
+<!-- <input type="hidden" id="data" name="data" value="{{total}}"> -->
+<button class="btn btn-outline-warning my-1 ml-1" type="submit">Descargar Datos</button>
+</form>
+
+<h1>{{xd}}</h1>
+
+<div class="container">
+  <table class="table table-hover container">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">COMERCIAL</th>
+        <th scope="col">AGENDADO</th>
+        <th scope="col">LLAMADO</th>
+        <th scope="col">OFERTADO</th>
+        <th scope="col">NO CONTESTA</th>
+        <th scope="col">NO INTERESADO</th>
+        <th scope="col">VENDIDO</th>
+        <th scope="col">NO EXISTE</th>
+        <th scope="col">TOTAL GENERAL</th>
+        <th scope="col">TOTAL VENTA VALOR</th>
+        <th scope="col">TOTAL VENTA</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {% for comercial in comerciales %}
+    <tr>
+      <td>{{comercial.nombre}}</td>
+      <td>{{comercial.cl_agendado}}</td>
+      <td>{{comercial.cl_llamado}}</td>
+      <td>{{comercial.cl_nocontesta}}</td>
+      <td>{{comercial.cl_ofertado}}</td>
+      <td>{{comercial.cl_nointeresa}}</td>
+      <td>{{comercial.cl_ofertado}}</td>
+      <td>{{comercial.cl_vendido}}</td>
+      <td>{{comercial.cl_vendido}}</td>
+      <td>{{comercial.cl_vendido}}</td>
+      <td><a href="/CRM/editar/{{ comercial.pk }}/"><button class="btn btn-outline-warning">Detalles</button></a></td>
+    </tr>
+    {% endfor %} -->
+
+      {% for k, v in contadores.items %}
+      <tr>
+        {% for k2, v2 in v.items %}
+        <td>{{v2}}</td>
+        {% endfor %}
+        <td><a href=""><button class="btn btn-outline-warning">Detalle</button></a>
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="container">
+  <table class="table table-hover container">
+    <thead>
+      <tr>
+        <th scope="col">Totales:</th>
+        <th scope="col">FMC_portaFIJO</th>
+        <th scope="col">FMC_FijoNuevo</th>
+        <th scope="col">PospagoMO</th>
+        <th scope="col">PospagoMB_DUOMB</th>
+        <th scope="col">CROSS_FijoPortado</th>
+        <th scope="col">CROSS_FijoNuevo</th>
+        <th scope="col">RENUEVO</th>
+        <th scope="col">RENUEVOSUBIDA</th>
+        <th scope="col">TV</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comercial in comerciales %}
+      <tr>
+        <td>{{comercial.nombre}}</td>
+        <td>{{comercial.SUMA_FMC_portaFIJO}}</td>
+        <td>{{comercial.SUMA_FMC_FijoNuevo}}</td>
+        <td>{{comercial.SUMA_PospagoMO}}</td>
+        <td>{{comercial.SUMA_PospagoMB_DUOMB}}</td>
+        <td>{{comercial.SUMA_CROSS_FijoPortado}}</td>
+        <td>{{comercial.SUMA_CROSS_FijoNuevo}}</td>
+        <td>{{comercial.SUMA_RENUEVO}}</td>
+        <td>{{comercial.SUMA_RENUEVOSUBIDA}}</td>
+        <td>{{comercial.SUMA_TV}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <thead>
+      <tr>
+        <th scope="col">SEGURO</th>
+        <th scope="col">ACCESORIOS</th>
+        <th scope="col">TERMLIBRE</th>
+        <th scope="col">CAMBIOTECNOLOGIA</th>
+        <th scope="col">PREPAGO</th>
+        <th scope="col">SEGURO_FAM</th>
+        <th scope="col">PEPENERGY</th>
+        <th scope="col">ENERGYGO</th>
+        <th scope="col">SMARTHOME</th>
+        <th scope="col">MOADICIONAL</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comercial in comerciales %}
+      <tr>
+        <td>{{comercial.SUMA_SEGURO}}</td>
+        <td>{{comercial.SUMA_ACCESORIOS}}</td>
+        <td>{{comercial.SUMA_TERMLIBRE}}</td>
+        <td>{{comercial.SUMA_CAMBIOTECNOLOGIA}}</td>
+        <td>{{comercial.SUMA_PREPAGO}}</td>
+        <td>{{comercial.SUMA_SEGURO_FAM}}</td>
+        <td>{{comercial.SUMA_PEPENERGY}}</td>
+        <td>{{comercial.SUMA_ENERGYGO}}</td>
+        <td>{{comercial.SUMA_SMARTHOME}}</td>
+        <td>{{comercial.SUMA_MOADICIONAL}}</td>
+        <td><a href="/CRM/editar/{{ comercial.pk }}/"><button class="btn btn-outline-warning">Contactar</button></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div> -->
+
+<p>{{text}}</p>
+
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">Clica en el nombre del cliente para obtener los detalles del mismo</span>
+  </div>
+</footer>
+
+{% endblock %}

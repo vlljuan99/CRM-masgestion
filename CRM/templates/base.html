@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/CRM/static/style.css">
+
+    <title>MásGestión</title>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/CRM/clientes/">
+        <img src="/CRM/static/images/logoG.png" alt="" width="30" height="30" class="d-inline-block align-top">
+        Más<strong>Gestión</strong>
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link link-secondary" aria-current="page" href="/CRM/clientes/">Lista de clientes</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle link-secondary" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestión de clientes</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/CRM/clientes/nuevo/">Nuevo cliente</a></li>
+          <li><a class="dropdown-item" href="/CRM/clientes/buscador/">Buscador de clientes</a></li>
+          <!-- <li><a class="dropdown-item" href="#">Editar cliente</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">¿Necesitas ayuda?</a></li> -->
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle link-secondary" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestión de comerciales</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/CRM/clientes/comerciales/">Lista de comerciales</a></li>
+          <li><a class="dropdown-item" href="/CRM/clientes/buscador/">Datos del día</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-warning" href="#">Log out</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li> -->
+    </ul>
+  </header>
+
+  <body>
+    <main class="m-4 p-4 d-flex justify-content-center">
+      <div class="">
+      {% block content %}
+  
+      {% endblock %}
+      </div>
+    </main>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+</html>

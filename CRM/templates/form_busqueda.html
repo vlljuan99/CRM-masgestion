@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container row">
+
+  <form action="/CRM/clientes/buscador/" method="post" class="form-control container row">{% csrf_token %}
+    <div class="container row">
+      <div id="form" class="mt-4 m-3 w-40">
+
+        <div class="fieldWrapper">
+          <label for="id_nombre">Nombre:</label> <input type="text" name="nombre" size="8" class="fielddisform"
+            id="id_nombre">
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_telefono">Comercial:</label>
+          <select class="fielddisform" name="comercial">
+
+            <option value="---------">---------</option>
+            {% for comercial in comerciales %}
+            <option value={{comercial.id}}>{{comercial.nombre}}</option>
+            {% endfor %}
+
+          </select>
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_DNI">DNICIF:</label> <input type="text" name="DNI" size="8" class="fielddisform" id="id_DNI">
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_telefono">Movil:</label> <input type="text" name="telefono" size="8" class="fielddisform"
+            id="id_telefono">
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_operador">Operador:</label> 
+          <select name="operador" class="fielddisform" id="id_operador">
+            <option value="---------">---------</option>
+            <option value="YOIGO">YOIGO</option>
+            <option value="MASMOVIL">MASMOVIL</option>
+            <option value="LOWI">LOWI</option>
+            <option value="Lebara">LEBARA</option>
+            <option value="Pepephone">PEPEPHONE</option>
+            <option value="Llamaya">LLAMAYA</option>
+            <option value="MOVISTAR">MOVISTAR</option>
+            <option value="ORANGE">ORANGE</option>
+            <option value="VODAFONE">VODAFONE</option>
+            <option value="OTROS">OTROS</option>
+          </select>
+        </div>
+
+
+        <div class="fieldWrapper">
+          <label for="id_estado">Estado:</label> <select name="estado" class="fielddisform" id="id_estado">
+            <option value="---------">---------</option>
+            <option value="LLAMADO">LLAMADO</option>
+            <option value="OFERTADO">OFERTADO</option>
+            <option value="AGENDADO">AGENDADO</option>
+            <option value="NO CONTESTA">NO CONTESTA</option>
+            <option value="NO INTERESA">NO INTERESA</option>
+            <option value="VENDIDO">VENDIDO</option>
+            <option value="NO EXISTE">NO EXISTE</option>
+          </select>
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_direccion">Dirección:</label> <input type="text" name="direccion" size="8" class="fielddisform"
+            id="id_direccion">
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_poblacion">Población:</label> <input type="text" name="poblacion" size="8" class="fielddisform"
+            id="id_poblacion">
+        </div>
+
+        <div>
+          <label for="start">Fecha contacto - Desde:</label>
+          <input class="fielddisform" type="date" id="desde_fc" name="desde_fc" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div>
+          <label for="start">Fecha contacto - Hasta:</label>
+          <input class="fielddisform" type="date" id="hasta_fc" name="hasta_fc" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div>
+          <label for="start">Fecha venta - Desde:</label>
+          <input class="fielddisform" type="date" id="desde_fv" name="desde_fv" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div>
+          <label for="start">Fecha venta - Hasta:</label>
+          <input class="fielddisform" type="date" id="hasta_fv" name="hasta_fv" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div>
+          <label for="start">Fecha agendado - Desde:</label>
+          <input class="fielddisform" type="date" id="desde_fa" name="desde_fa" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div>
+          <label for="start">Fecha agendado - Hasta:</label>
+          <input class="fielddisform" type="date" id="hasta_fa" name="hasta_fa" value="" min="2018-01-01"
+            max="2022-12-31">
+        </div>
+
+        <div class="fieldWrapper">
+          <label for="id_general">Búsqueda general:</label> <input type="text" name="general" size="8"
+            class="fielddisform" id="id_general">
+        </div>
+      </div>
+
+      <div id="form" class="mt-4 m-3 w-30">
+        <label for="">FMC_portaFijo <input type="checkbox" name="FMC_portaFijo" id="FMC_portaFijo"></label>
+        <label for="">FMC_FijoNuevo <input type="checkbox" name="FMC_FijoNuevo" id="FMC_FijoNuevo"></label>
+        <label for="">PospagoMO <input type="checkbox" name="PospagoMO" id="PospagoMO"></label>
+        <label for="">PospagoMB_DUOMB <input type="checkbox" name="PospagoMB_DUOMB" id="PospagoMB_DUOMB"></label>
+        <label for="">CROSS_FijoPortado <input type="checkbox" name="CROSS_FijoPortado" id="CROSS_FijoPortado"></label>
+        <label for="">CROSS_FijoNuevo <input type="checkbox" name="CROSS_FijoNuevo" id="CROSS_FijoNuevo"></label>
+        <label for="">RENUEVO <input type="checkbox" name="RENUEVO" id="RENUEVO"></label>
+        <label for="">RENUEVOSUBIDA <input type="checkbox" name="RENUEVOSUBIDA" id="RENUEVOSUBIDA"></label>
+        <label for="">TV <input type="checkbox" name="TV" id="TV"></label>
+        <label for="">SEGURO <input type="checkbox" name="SEGURO" id="SEGURO"></label>
+        <label for="">ACCESORIOS <input type="checkbox" name="ACCESORIOS" id="ACCESORIOS"></label>
+        <label for="">TERMLIBRE <input type="checkbox" name="TERMLIBRE" id="TERMLIBRE"></label>
+        <label for="">CAMBIOTECNOLOGIA <input type="checkbox" name="CAMBIOTECNOLOGIA" id="CAMBIOTECNOLOGIA"></label>
+        <label for="">PREPAGO <input type="checkbox" name="PREPAGO" id="PREPAGO"></label>
+        <label for="">SEGURO_FAM <input type="checkbox" name="SEGURO_FAM" id="SEGURO_FAM"></label>
+        <label for="">PEPENERGY <input type="checkbox" name="PEPENERGY" id="PEPENERGY"></label>
+        <label for="">ENERGYGO <input type="checkbox" name="ENERGYGO" id="ENERGYGO"></label>
+        <label for="">SMARTHOME <input type="checkbox" name="SMARTHOME" id="SMARTHOME"></label>
+        <label for="">MOADICIONAL <input type="checkbox" name="MOADICIONAL" id="MOADICIONAL"></label>
+      </div>
+    </div>
+
+    <input type="submit" value="Buscar" class="btn btn-outline-warning mt-2">
+  </form>
+
+  <h1>
+    <form action="./descargar" method="post" class="form-control">{% csrf_token %}
+      {% for key, value in busqueda.items %}
+        <input type="hidden" id="{{ key }}" name="{{ key }}" value="{{ value }}">
+      {% endfor %}
+      <!-- <input type="hidden" id="data" name="data" value="{{total}}"> -->
+      <button class="btn btn-outline-warning my-1 ml-1" type="submit">Descargar Datos</button>
+    </form>
+  </h1>
+
+  <div class="pagination row">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre completo</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Email</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Población</th>
+        <th scope="col">Comercial asignado</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cliente in clientes %}
+      <tr>
+        <td><strong>{{cliente.nombre}}</strong></td>
+        <td>{{cliente.DNI}}</td>
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.email}}</td>
+        <td>{{cliente.direccion}}</td>
+        <td>{{cliente.poblacion}}, {{cliente.provincia}}</td>
+        <td>{{cliente.comercial.nombre}}</td>
+        <td><button type="button" onclick="location.href='/CRM/clientes/{{ cliente.pk }}/'"
+            class="btn btn-outline-warning">Detalles</button></td>
+        <td><button type="button" onclick="location.href='/CRM/editar/{{ cliente.pk }}/'"
+            class="btn btn-outline-warning">Editar</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="pagination row">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+
+</div>
+
+{% endblock %}

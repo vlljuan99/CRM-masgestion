@@ -1,0 +1,35 @@
+<title>Editar datos</title>
+
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- <a href="/CRM/clientes/">Volver a lista de clientes</a> -->
+    <div class="mt-2 mb-2 container d-flex justify-content-center">
+        <h1>Edite los datos del cliente</h1>
+    </div>
+    <form action="" method="post" class="form-control">{% csrf_token %}
+
+        <div class="row d-flex justify-content-between mt-2">
+            {% for field in form %}
+            {% if field.id_for_label == 'id_comercial'%}
+            <div class="mt-3 col-sm">
+                <!-- <label for="id_comercial">Comercial asociado:</label> <input type="text" name="comercial" size="8" class="fielddisform" id="id_comercial"> -->
+                <label for="id_telefono">Comercial:</label>
+                <select class="fielddisform" name="comercial">
+                
+                  <option value="---------">---------</option>
+                {% for comercial in comerciales %}
+                  <option value={{comercial.id}}>{{comercial.nombre}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            {% else %}
+            <div class="mt-3 col-sm">{{ field.label_tag }} {{ field }}</div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <a href="/CRM/clientes/"><button type="submit" class="btn btn-primary">Editar</button></a>
+        </div>
+    </form>
+{% endblock %}

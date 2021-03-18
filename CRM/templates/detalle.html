@@ -1,0 +1,101 @@
+<title>Detalle cliente</title>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="mt-2 mb-2 container d-flex justify-content-center">
+    <h1>Datos del cliente {{detalle.nombre}}</h1>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <ul class="list-group list-group-flush container">
+            <li class="list-group-item justify-content-between">Nombre: {{detalle.nombre}}</li>
+            <li class="list-group-item">DNI-CIF: {{detalle.DNI}}</li>
+            <li class="list-group-item">Teléfono: {{detalle.telefono}}</li>
+            <li class="list-group-item">Email: {{detalle.email}}</li>
+            <li class="list-group-item">Operador: {{detalle.operador}}</li>
+            <li class="list-group-item">CP: {{detalle.CP}}</li>
+            <li class="list-group-item">Origen: {{detalle.origen}}</li>
+            <li class="list-group-item">Segmento: {{detalle.segmento}}</li>
+        </ul>
+    </div>
+    <div class="col-sm">
+        <ul class="list-group list-group-flush container">
+            <li class="list-group-item">Provincia: {{detalle.provincia}}</li>
+            <li class="list-group-item">Población: {{detalle.poblacion}}</li>
+            <!-- <li class="list-group-item">Dirección: {{detalle.direccion}} - Número: {{detalle.numero}} - Portal: {{detalle.portal}} - Escalera: {{detalle.escalera}} - Planta: {{detalle.planta}} - Puerta: {{detalle.puerta}}</li> -->
+            <li class="list-group-item">Dirección: {{detalle.direccion}} - Número: {{detalle.numero}}</li>
+            <li class="list-group-item">Fecha contacto: {{detalle.fecha_contacto}}</li>
+            <li class="list-group-item">Fecha agendado: {{detalle.fecha_agendado}}</li>
+            <li class="list-group-item">Fecha venta: {{detalle.fecha_venta}}</li>
+            <li class="list-group-item">Comercial asociado: {{detalle.comercial.nombre}}</li>
+            <li class="list-group-item">Estado: {{detalle.estado}}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="mt-2 mb-2 container d-flex justify-content-center">
+    <h1>Contrataciones</h1>
+</div>
+<div class="row">
+    <ul class="list-group list-group-flush container">
+        {%if detalle.FMC_portaFIJO%}
+        <li class="list-group-item">FMC_portaFIJO: {{detalle.FMC_portaFIJO}}</li>
+        {%endif%}
+        {%if detalle.FMC_FijoNuevo%}
+        <li class="list-group-item">FMC_FijoNuevo: {{detalle.FMC_FijoNuevo}}</li>
+        {%endif%}
+        {%if detalle.PospagoMO%}
+        <li class="list-group-item">PospagoMO: {{detalle.PospagoMO}}</li>
+        {%endif%}
+        {%if detalle.PospagoMB_DUOMB%}
+        <li class="list-group-item">PospagoMB_DUOMB: {{detalle.PospagoMB_DUOMB}}</li>
+        {%endif%}
+        {%if detalle.CROSS_FijoPortado%}
+        <li class="list-group-item">CROSS_FijoPortado: {{detalle.CROSS_FijoPortado}}</li>
+        {%endif%}
+        {%if detalle.CROSS_FijoNuevo%}
+        <li class="list-group-item">CROSS_FijoNuevo: {{detalle.CROSS_FijoNuevo}}</li>
+        {%endif%}
+        {%if detalle.RENUEVO%}
+        <li class="list-group-item">RENUEVO: {{detalle.RENUEVO}}</li>
+        {%endif%}
+        {%if detalle.RENUEVOSUBIDA%}
+        <li class="list-group-item">RENUEVOSUBIDA: {{detalle.RENUEVOSUBIDA}}</li>
+        {%endif%}
+        {%if detalle.TV%}
+        <li class="list-group-item">TV: {{detalle.TV}}</li>
+        {%endif%}
+        {%if detalle.SEGURO%}
+        <li class="list-group-item">SEGURO: {{detalle.SEGURO}}</li>
+        {%endif%}
+        {%if detalle.ACCESORIOS%}
+        <li class="list-group-item">ACCESORIOS: {{detalle.ACCESORIOS}}</li>
+        {%endif%}
+        {%if detalle.TERMLIBRE%}
+        <li class="list-group-item">TERMLIBRE: {{detalle.TERMLIBRE}}</li>
+        {%endif%}
+        {%if detalle.CAMBIOTECNOLOGIA%}
+        <li class="list-group-item">CAMBIOTECNOLOGIA: {{detalle.CAMBIOTECNOLOGIA}}</li>
+        {%endif%}
+        {%if detalle.PREPAGO%}
+        <li class="list-group-item">PREPAGO: {{detalle.PREPAGO}}</li>
+        {%endif%}
+        {%if detalle.SEGURO_FAM%}
+        <li class="list-group-item">SEGURO_FAM: {{detalle.SEGURO_FAM}}</li>
+        {%endif%}
+        {%if detalle.PEPENERGY%}
+        <li class="list-group-item">PEPENERGY: {{detalle.PEPENERGY}}</li>
+        {%endif%}
+        {%if detalle.ENERGYGO%}
+        <li class="list-group-item">ENERGYGO: {{detalle.ENERGYGO}}</li>
+        {%endif%}
+        {%if detalle.SMARTHOME%}
+        <li class="list-group-item">SMARTHOME: {{detalle.SMARTHOME}}</li>
+        {%endif%}
+        {%if detalle.MOADICIONAL%}
+        <li class="list-group-item">MOADICIONAL: {{detalle.MOADICIONAL}}</li>
+        {%endif%}
+    </ul>
+</div>
+{% endblock %}
