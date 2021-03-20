@@ -7,9 +7,9 @@ from django.utils import timezone
 class ClienteForm(forms.ModelForm):
     nombre = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Nombre completo'}), label='Nombre del cliente', required=False) #nombre y apellidos del cliente
     DNI = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'DNI'}), label='DNI', required=False)
-    telefono = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Teléfono'}), label='Móvil o Fijo')
+    telefono = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Teléfono'}), label='Móvil o Fijo', required=False)
     CP = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Código postal'}), label='Código postal', required=False) #codigo postal
-    email = forms.EmailField(widget= forms.TextInput(attrs={'placeholder':'ejemplo@ejemplo.es'}), label='Correo electrónico')
+    email = forms.EmailField(widget= forms.TextInput(attrs={'placeholder':'ejemplo@ejemplo.es'}), label='Correo electrónico', required=False)
     provincia = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Provincia'}), label='Provincia', required=False) #nombre y apellidos del cliente
     poblacion = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Población'}), label='Población', required=False)
     direccion = forms.CharField(widget= forms.TextInput(attrs={'placeholder':'Dirección completa'}), label='Dirección', required=False)

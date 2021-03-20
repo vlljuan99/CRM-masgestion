@@ -26,7 +26,7 @@ SECRET_KEY = '9%9es!ew(@4^+d!7gy+y5yspn58eu_ci&ip1dqics!7$fqze3*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['crm-masgestion.herokuapp.com']
+ALLOWED_HOSTS = ['crm-masgestion.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

@@ -28,9 +28,9 @@ def lista_clientes(request):
     if(request.method=='POST' and busqueda is not None):
         if busqueda.lower() in MESES.keys():
             mes = MESES[busqueda]
-            clientes = Clientes.objects.filter(fecha_agendado__contains=mes) | Clientes.objects.filter(fecha_venta__contains=mes) | Clientes.objects.filter(fecha_contacto__contains=mes)
+            clientes = Clientes.objects.filter(fecha_agendado__icontains=mes) | Clientes.objects.filter(fecha_venta__icontains=mes) | Clientes.objects.filter(fecha_contacto__icontains=mes)
         else:
-            clientes = Clientes.objects.filter(nombre__contains=busqueda) | Clientes.objects.filter(DNI__contains=busqueda) | Clientes.objects.filter(email__contains=busqueda) | Clientes.objects.filter(telefono__contains=busqueda) | Clientes.objects.filter(CP__contains=busqueda) | Clientes.objects.filter(provincia__contains=busqueda) | Clientes.objects.filter(poblacion__contains=busqueda) | Clientes.objects.filter(direccion__contains=busqueda) | Clientes.objects.filter(CP=busqueda) | Clientes.objects.filter(comercial__nombre__contains=busqueda)     
+            clientes = Clientes.objects.filter(nombre__icontains=busqueda) | Clientes.objects.filter(DNI__icontains=busqueda) | Clientes.objects.filter(email__icontains=busqueda) | Clientes.objects.filter(telefono__contains=busqueda) | Clientes.objects.filter(CP__contains=busqueda) | Clientes.objects.filter(provincia__contains=busqueda) | Clientes.objects.filter(poblacion__contains=busqueda) | Clientes.objects.filter(direccion__contains=busqueda) | Clientes.objects.filter(CP=busqueda) | Clientes.objects.filter(comercial__nombre__contains=busqueda)     
     else:
         clientes = Clientes.objects.get_queryset().order_by('nombre')
     
@@ -56,7 +56,7 @@ def lista_comerciales(request):
         if(hasta != ""):
             consulta1=Q(fecha_contacto__lte=hasta)
 
-        comerciales = Comerciales.objects.filter(nombre__contains=busqueda)
+        comerciales = Comerciales.objects.filter(nombre__icontains=busqueda)
 
         for com in comerciales:
             comercial = dict(
@@ -220,19 +220,19 @@ def busca_cliente(request):
 
 
         if(DNI != ""):
-            consulta=Q(DNI__contains=DNI)
+            consulta=Q(DNI__icontains=DNI)
         if(comercial != "---------"):
             consulta3=Q(comercial=comercial)
         if(telefono != ""):
-            consulta3=Q(telefono__contains=telefono)
+            consulta3=Q(telefono__icontains=telefono)
         if(direccion != ""):
-            consulta4=Q(direccion__contains=direccion)
+            consulta4=Q(direccion__icontains=direccion)
         if(poblacion != ""):
-            consulta5=Q(poblacion__contains=poblacion)
+            consulta5=Q(poblacion__icontains=poblacion)
         if(estado != "---------"):
             consulta6=Q(estado=estado)  
         if(operador != "---------"):
-            consulta7=Q(operador__contains=operador)   
+            consulta7=Q(operador__icontains=operador)   
         if(desde_fc != ""):
             consulta8=Q(fecha_contacto__gte=desde_fc)
         if(hasta_fc != ""):
@@ -246,7 +246,7 @@ def busca_cliente(request):
         if(hasta_fa != ""):
             consulta13=Q(fecha_agendado__lte=hasta_fa)
         if(nombre != ""):
-            consulta14=Q(nombre__contains=nombre)
+            consulta14=Q(nombre__icontains=nombre)
         if(FMC_portaFijo == 'on'):
             consulta15=Q(FMC_portaFIJO__gt=0)
         if(FMC_FijoNuevo == 'on'):
@@ -298,7 +298,7 @@ def busca_cliente(request):
 
 
         if(general != ""):
-            aux = Q(nombre__contains=general)|Q(DNI__contains=general)|Q(CP__contains=general)|Q(email__contains=general)|Q(telefono__contains=general)|Q(provincia__contains=general)|Q(poblacion__contains=general)|Q(direccion__contains=general)|Q(comercial__nombre__contains=general)
+            aux = Q(nombre__icontains=general)|Q(DNI__icontains=general)|Q(CP__icontains=general)|Q(email__icontains=general)|Q(telefono__icontains=general)|Q(provincia__icontains=general)|Q(poblacion__icontains=general)|Q(direccion__icontains=general)|Q(comercial__nombre__icontains=general)
             clientes=Clientes.objects.filter(aux)
             todo=Clientes.objects.filter(aux).query
         
@@ -365,19 +365,19 @@ def descargarcsv(request):
 
 
         if(DNI != ""):
-            consulta=Q(DNI__contains=DNI)
+            consulta=Q(DNI__icontains=DNI)
         if(comercial != "---------" and comercial != ""):
             consulta3=Q(comercial=comercial)
         if(telefono != ""):
-            consulta3=Q(telefono__contains=telefono)
+            consulta3=Q(telefono__icontains=telefono)
         if(direccion != ""):
-            consulta4=Q(direccion__contains=direccion)
+            consulta4=Q(direccion__icontains=direccion)
         if(poblacion != ""):
-            consulta5=Q(poblacion__contains=poblacion)
+            consulta5=Q(poblacion__icontains=poblacion)
         if(estado != "---------" and estado !=""):
             consulta6=Q(estado=estado)  
         if(operador != "---------" and operador != ""):
-            consulta7=Q(operador__contains=operador)   
+            consulta7=Q(operador__icontains=operador)   
         if(desde_fc != ""):
             consulta8=Q(fecha_contacto__gte=desde_fc)
         if(hasta_fc != ""):
@@ -391,7 +391,7 @@ def descargarcsv(request):
         if(hasta_fa != ""):
             consulta13=Q(fecha_agendado__lte=hasta_fa)
         if(nombre != ""):
-            consulta14=Q(nombre__contains=nombre)
+            consulta14=Q(nombre__icontains=nombre)
         if(FMC_portaFijo == 'on'):
             consulta15=Q(FMC_portaFIJO__gt=0)
         if(FMC_FijoNuevo == 'on'):
@@ -436,7 +436,7 @@ def descargarcsv(request):
         clientes = Clientes.objects.filter(consulta)
 
         if(general != ""):
-            clientes = Clientes.objects.filter(nombre__contains=general) | Clientes.objects.filter(DNI__contains=general) | Clientes.objects.filter(email__contains=general) | Clientes.objects.filter(telefono__contains=general) | Clientes.objects.filter(CP__contains=general) | Clientes.objects.filter(provincia__contains=general) | Clientes.objects.filter(poblacion__contains=general) | Clientes.objects.filter(direccion__contains=general) | Clientes.objects.filter(CP=general) | Clientes.objects.filter(comercial__nombre__contains=general) 
+            clientes = Clientes.objects.filter(nombre__icontains=general) | Clientes.objects.filter(DNI__icontains=general) | Clientes.objects.filter(email__icontains=general) | Clientes.objects.filter(telefono__icontains=general) | Clientes.objects.filter(CP__icontains=general) | Clientes.objects.filter(provincia__icontains=general) | Clientes.objects.filter(poblacion__icontains=general) | Clientes.objects.filter(direccion__icontains=general) | Clientes.objects.filter(CP=general) | Clientes.objects.filter(comercial__nombre__icontains=general) 
     
 
         # df = pd.DataFrame(data, columns = ['Nombre', 'Origen', 'Fecha', 'Comercial', 'DNICIF', 'Segmento', 'Direccion', 'Localidad', 'Fijo', 'Movil', 'Operador', 'Estado', 'Motivo No', 'Fecha Agendado', 'Fecha Venta'])
@@ -466,7 +466,7 @@ def descargarcom(request):
 
     consulta=consulta1=consulta2=Q()
 
-    comerciales = Comerciales.objects.filter(nombre__contains=busqueda)
+    comerciales = Comerciales.objects.filter(nombre__icontains=busqueda)
 
     if(request.method=='POST' and busqueda != ""):
         if(desde != ""):

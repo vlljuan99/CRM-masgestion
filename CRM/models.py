@@ -78,19 +78,19 @@ class Clientes(models.Model):
     )
     
     DNI = models.CharField(
-        max_length=50,
+        max_length=200,
         default=None,
         null=True
     )
 
     telefono = models.CharField(
-        max_length=50,
+        max_length=200,
         default=None,
         null=True
     )
 
     email = models.EmailField(
-        max_length = 100,
+        max_length = 200,
         default=None,
         null=True
     )
@@ -108,19 +108,19 @@ class Clientes(models.Model):
     # )
 
     CP = models.CharField(
-        max_length=50,
+        max_length=200,
         default=None,
         null=True
     )
 
     provincia = models.CharField(
-        max_length=50,
+        max_length=200,
         default=None,
         null=True
     )
 
     poblacion = models.CharField(
-        max_length=50,
+        max_length=200,
         default=None,
         null=True
     )
